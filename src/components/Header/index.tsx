@@ -20,6 +20,7 @@ import { CardNoise } from '../earn/styled'
 import Menu from '../Menu'
 import Modal from '../Modal'
 import Row from '../Row'
+import RowFixed from '../Row'
 import { Dots } from '../swap/styleds'
 import Web3Status from '../Web3Status'
 import NetworkCard from './NetworkCard'
@@ -35,30 +36,25 @@ const HeaderFrame = styled.div<{ showBackground: boolean }>`
   width: 100%;
   top: 0;
   position: relative;
-  padding: 1rem;
+  padding: 0.5rem;
   z-index: 21;
   position: relative;
+
   /* Background slide effect on scroll. */
-  background-image: ${({ theme }) => `linear-gradient(to bottom, transparent 50%, ${theme.bg0} 50% )}}`};
+  background-image: ${({ theme }) => `linear-gradient(to bottom, transparent 50%, ${theme.bg0} 50% )}}`}
   background-position: ${({ showBackground }) => (showBackground ? '0 -100%' : '0 0')};
   background-size: 100% 200%;
   box-shadow: 0px 0px 0px 1px ${({ theme, showBackground }) => (showBackground ? theme.bg2 : 'transparent;')};
-  transition: background-position 0.1s, box-shadow 0.1s;
-  background-blend-mode: hard-light;
-
-  ${({ theme }) => theme.mediaWidth.upToLarge`
-    grid-template-columns: 48px 1fr 1fr;
-  `};
+  transition: background-position .1s, box-shadow .1s;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding:  1rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
   `};
 
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding:  1rem;
-    grid-template-columns: 36px 1fr;
-  `};
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+    padding: 1rem;
+  `}
 `
 
 const HeaderControls = styled.div`
@@ -66,6 +62,23 @@ const HeaderControls = styled.div`
   flex-direction: row;
   align-items: center;
   justify-self: flex-end;
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: center;
+    width: 100%;
+    max-width: 960px;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 99;
+    height: 72px;
+    border-radius: 12px 12px 0 0;
+    background-color: ${({ theme }) => theme.bg1};
+  `};
 `
 
 const HeaderElement = styled.div`
@@ -78,39 +91,34 @@ const HeaderElement = styled.div`
   }
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
+    flex-direction: row-reverse;
     align-items: center;
   `};
 `
 
+const HeaderElementWrap = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+const HeaderRow = styled(RowFixed)`
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+   width: 100%;
+  `};
+`
+
 const HeaderLinks = styled(Row)`
-  justify-self: center;
-  background-color: ${({ theme }) => theme.bg0};
+  //  background-color: ${({ theme }) => theme.bg0};
+
   width: fit-content;
-  padding: 4px;
-  border-radius: 16px;
+  padding: 10px;
+  border-radius: 10px;
   display: grid;
   grid-auto-flow: column;
   grid-gap: 10px;
   overflow: auto;
-  align-items: center;
-  ${({ theme }) => theme.mediaWidth.upToLarge`
-    justify-self: start;  
-    `};
   ${({ theme }) => theme.mediaWidth.upToMedium`
-    justify-self: center;
-  `};
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    flex-direction: row;
-    justify-content: space-between;
-    justify-self: center;
-    z-index: 99;
-    position: fixed;
-    bottom: 0; right: 50%;
-    transform: translate(50%,-50%);
-    margin: 0 auto;
-    background-color: ${({ theme }) => theme.bg0};
-    border: 1px solid ${({ theme }) => theme.bg2};
-    box-shadow: 0px 6px 10px rgb(0 0 0 / 2%);
+    justify-self: flex-end;
   `};
 `
 
@@ -118,10 +126,11 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg1)};
+  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg2)};
   border-radius: 12px;
   white-space: nowrap;
   width: 100%;
+  cursor: pointer;
 
   :focus {
     border: 1px solid blue;
@@ -151,6 +160,12 @@ const UNIWrapper = styled.span`
   }
 `
 
+const HideSmall = styled.span`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+    display: none;
+  `};
+`
+
 const BalanceText = styled(Text)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     display: none;
@@ -174,67 +189,160 @@ const Title = styled.a`
 const UniIcon = styled.div`
   transition: transform 0.3s ease;
   :hover {
-    transform: rotate(-5deg);
+    transform: rotate(-180deg);
   }
 `
 
 const activeClassName = 'ACTIVE'
 
+// Button colours
+const clrNeon = 'hsl(317 100% 54%)'
+const clrBg = 'hsl(323 21% 16%)'
+
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName,
 })`
   ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
-  border-radius: 3rem;
-  outline: none;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+  font-size: 1.3rem;
+  display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 8px 12px;
-  word-break: break-word;
-  overflow: hidden;
-  white-space: nowrap;
-  &.${activeClassName} {
-    border-radius: 12px;
-    font-weight: 600;
-    justify-content: center;
-    color: ${({ theme }) => theme.text1};
-    background-color: ${({ theme }) => theme.bg2};
-  }
+  color: ${clrNeon};
+  border: ${clrNeon} 0.1em solid;
+  padding: 0.25em 0.4em;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  position: relative;
+}
 
-  :hover,
-  :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
-  }
+::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 0.05em 0.05em ${clrNeon};
+  opacity: 0;
+  background-color: ${clrNeon};
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+:hover,
+:focus {
+  color: ${clrBg};
+  text-shadow: none;
+}
+
+:hover::before,
+:focus::before {
+  opacity: 1;
+}
+
+:hover::after,
+:focus::after {
+  opacity: 1;
+}
+`
+// I created an extra styled button to hide it on smaller screen sizes
+const StyledNavLinkHidable = styled(StyledNavLink)`
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+      display: none;
+`}
 `
 
 const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName,
 })<{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
-  border-radius: 3rem;
-  outline: none;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+  font-size: 1.3rem;
+  display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
-  width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
+  color: ${clrNeon};
+  border: ${clrNeon} 0.1em solid;
+  padding: 0.25em 0.4em;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  position: relative;
+}
 
-  &.${activeClassName} {
-    border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text1};
-  }
+::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 0.05em 0.05em ${clrNeon};
+  opacity: 0;
+  background-color: ${clrNeon};
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+
+:hover,
+:focus {
+  color: ${clrBg};
+  text-shadow: none;
+}
+
+:hover::before,
+:focus::before {
+  opacity: 1;
+}
+
+:hover::after,
+:focus::after {
+  opacity: 1;
+}
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+      display: none;
+`}
+`
+
+const StyledMenuButton = styled.button`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  height: 35px;
+  background-color: ${({ theme }) => theme.bg2};
+  margin-left: 8px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
-    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    background-color: ${({ theme }) => theme.bg4};
+  }
+
+  svg {
+    margin-top: 2px;
+  }
+  > * {
+    stroke: ${({ theme }) => theme.text1};
   }
 `
 
@@ -293,6 +401,9 @@ export default function Header() {
           <Trans>Charts</Trans>
           <sup>↗</sup>
         </StyledExternalLink>
+        <StyledNavLink id={`stake-nav-link`} to={'/about'}>
+          <Trans>About</Trans>
+        </StyledNavLink>
       </HeaderLinks>
 
       <HeaderControls>

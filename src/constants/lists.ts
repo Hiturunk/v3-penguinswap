@@ -1,5 +1,6 @@
 import { IS_ON_APP_URL } from './misc'
 
+const PENGUIN_LIST = 'tokenlist.penguinswap.eth'
 const AAVE_LIST = 'tokenlist.aave.eth'
 const BA_LIST = 'https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json'
 const CMC_ALL_LIST = 'defi.cmc.eth'
@@ -19,6 +20,7 @@ export const UNSUPPORTED_LIST_URLS: string[] = IS_ON_APP_URL ? [BA_LIST] : []
 
 // lower index == higher priority for token import
 export const DEFAULT_LIST_OF_LISTS: string[] = [
+  PENGUIN_LIST,
   COMPOUND_LIST,
   AAVE_LIST,
   CMC_ALL_LIST,
@@ -35,4 +37,4 @@ export const DEFAULT_LIST_OF_LISTS: string[] = [
 ]
 
 // default lists to be 'active' aka searched across
-export const DEFAULT_ACTIVE_LIST_URLS: string[] = [GEMINI_LIST]
+export const DEFAULT_ACTIVE_LIST_URLS: string[] = [PENGUIN_LIST]

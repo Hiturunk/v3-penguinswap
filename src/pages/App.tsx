@@ -29,6 +29,7 @@ import Swap from './Swap'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
+import About from './AboutTheTeam'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -85,6 +86,7 @@ export default function App() {
             <Polling />
             <TopLevelModals />
             <Switch>
+              <Route exact strict path="/about" component={About} />
               <Route exact strict path="/vote" component={Vote} />
               <Route exact strict path="/vote/:governorIndex/:id" component={VotePage} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />

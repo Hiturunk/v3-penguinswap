@@ -191,9 +191,10 @@ export const ThemedGlobalStyle = createGlobalStyle`
 html {
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg1} !important;
+  background-image: url(https://images.wallpaperscraft.com/image/single/winter_snow_silhouette_131193_3840x2160.jpg)
 }
 
 a {
- color: ${({ theme }) => theme.blue1}; 
+ color: ${({ theme }) => theme.blue1};
 }
 `

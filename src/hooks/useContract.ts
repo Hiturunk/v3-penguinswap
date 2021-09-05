@@ -1,6 +1,7 @@
 import { Contract } from '@ethersproject/contracts'
 import { abi as GOVERNANCE_ABI } from '@uniswap/governance/build/GovernorAlpha.json'
 import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
+import SHRIMP_ABI from '../constants/abis/wuni.json'
 import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
 import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
@@ -35,7 +36,7 @@ import { Quoter, NonfungiblePositionManager, UniswapInterfaceMulticall } from 't
 import { V3Migrator } from 'types/v3/V3Migrator'
 import { getContract } from 'utils'
 import { Erc20, ArgentWalletDetector, EnsPublicResolver, EnsRegistrar, Weth } from '../abis/types'
-import { UNI, WETH9_EXTENDED } from '../constants/tokens'
+import { CRAB, COMP, TORI, ADAI, SHRIMP, UNI, WETH9_EXTENDED } from '../constants/tokens'
 import { useActiveWeb3React } from './web3'
 
 // returns null on errors
@@ -123,6 +124,31 @@ export const useLatestGovernanceContract = useGovernanceV1Contract
 export function useUniContract() {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId ? UNI[chainId]?.address : undefined, UNI_ABI, true)
+}
+
+export function useWUNIContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? SHRIMP.address : undefined, SHRIMP_ABI, withSignerIfPossible)
+}
+
+export function useTORIContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? TORI.address : undefined, SHRIMP_ABI, withSignerIfPossible)
+}
+
+export function useCRABContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? CRAB.address : undefined, SHRIMP_ABI, withSignerIfPossible)
+}
+
+export function useCOMPContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? COMP.address : undefined, ERC20_ABI, withSignerIfPossible)
+}
+
+export function useADAIContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? ADAI.address : undefined, ERC20_ABI, withSignerIfPossible)
 }
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean) {

@@ -2,6 +2,7 @@ import { Percent } from '@uniswap/sdk-core'
 import JSBI from 'jsbi'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
+export const VERSION = '0.1'
 
 export const NetworkContextName = 'NETWORK'
 
@@ -32,4 +33,4 @@ export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), BIP
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
-export const IS_ON_APP_URL = window && window.location.hostname === 'app.uniswap.org'
+export const IS_ON_APP_URL = window && window.location.hostname === 'https://v3.penguinswap.eth.limo'

@@ -232,25 +232,19 @@ export default function Menu() {
             default:
               return (
                 <MenuFlyout>
-                  <MenuItem href="https://uniswap.org/">
+                  <MenuItem href="https://penguinparty.eth.limo">
                     <div>
                       <Trans>About</Trans>
                     </div>
                     <Info opacity={0.6} size={16} />
                   </MenuItem>
-                  <MenuItem href="https://docs.uniswap.org/">
+                  <MenuItem href="https://github.com/penguinparty-eth">
                     <div>
                       <Trans>Docs</Trans>
                     </div>
                     <BookOpen opacity={0.6} size={16} />
                   </MenuItem>
-                  <MenuItem href={CODE_LINK}>
-                    <div>
-                      <Trans>Code</Trans>
-                    </div>
-                    <Code opacity={0.6} size={16} />
-                  </MenuItem>
-                  <MenuItem href="https://discord.gg/FCfyBSbCU5">
+                  <MenuItem href="https://discord.gg/H4NyxPUV24">
                     <div>
                       <Trans>Discord</Trans>
                     </div>

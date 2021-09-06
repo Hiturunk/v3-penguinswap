@@ -1,0 +1,67 @@
+.dev {
+  margin: 2%;
+}
+
+h1 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+h2, h3, h4, h5, h6 {
+  margin-top: 0 auto;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.hiturunk {
+  width: 150px;
+  border-radius: 50%;
+}
+
+.img-div {
+  margin: 0 auto;
+}
+
+.team-photo {
+  width: 120px;
+  height: 120px;
+  grid-row-start: 1;
+  margin-bottom: -10%;
+}
+
+.saren-div {
+  text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.crypto-div {
+  text-align: center;
+  padding-left: 30%;
+  padding-right: 30%;
+}
+
+.pic {
+  padding-top: 20px;
+  width: 25%;
+}
+
+.trade {
+  margin-top: -15px;
+}
+
+@media (max-width: 960px) {
+  .penguin-party {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .devs {
+    flex-direction: column;
+    grid-template-columns: 1fr !important;
+  }
+  .hiturunk {
+    width: 30%;
+  }
+}

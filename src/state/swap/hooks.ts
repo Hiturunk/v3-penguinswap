@@ -21,6 +21,7 @@ import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies
 import { SwapState } from './reducer'
 import { useUserSingleHopOnly } from 'state/user/hooks'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
+import { DEFAULTTOKEN } from '../../constants/misc'
 
 export function useSwapState(): AppState['swap'] {
   return useAppSelector((state) => state.swap)
@@ -226,7 +227,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (valid) return valid
     if (urlParam.toUpperCase() === 'ETH') return 'ETH'
   }
-  return ''
+  return DEFAULTTOKEN ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

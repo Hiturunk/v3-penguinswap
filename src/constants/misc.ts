@@ -2,7 +2,7 @@ import { Percent } from '@uniswap/sdk-core'
 import JSBI from 'jsbi'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
-export const VERSION = '0.1'
+export const VERSION = '0.2 - Grassy Green'
 
 export const NetworkContextName = 'NETWORK'
 
@@ -20,9 +20,9 @@ const BIPS_BASE = JSBI.BigInt(10000)
 export const ONE_BIPS = new Percent(JSBI.BigInt(1), BIPS_BASE)
 
 // used for warning states
-export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(100), BIPS_BASE) // 1%
-export const ALLOWED_PRICE_IMPACT_MEDIUM: Percent = new Percent(JSBI.BigInt(300), BIPS_BASE) // 3%
-export const ALLOWED_PRICE_IMPACT_HIGH: Percent = new Percent(JSBI.BigInt(500), BIPS_BASE) // 5%
+export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(1000), BIPS_BASE) // 1%
+export const ALLOWED_PRICE_IMPACT_MEDIUM: Percent = new Percent(JSBI.BigInt(3000), BIPS_BASE) // 3%
+export const ALLOWED_PRICE_IMPACT_HIGH: Percent = new Percent(JSBI.BigInt(10000), BIPS_BASE) // 5%
 // if the price slippage exceeds this number, force the user to type 'confirm' to execute
 export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.BigInt(1000), BIPS_BASE) // 10%
 // for non expert mode disable swaps above this
@@ -34,3 +34,4 @@ export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
 
 export const IS_ON_APP_URL = window && window.location.hostname === 'https://v3.penguinswap.eth.limo'
+export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'

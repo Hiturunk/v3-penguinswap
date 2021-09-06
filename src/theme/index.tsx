@@ -10,7 +10,8 @@ import { useIsDarkMode } from '../state/user/hooks'
 import { Colors } from './styled'
 
 export * from './components'
-
+import penguinBackgroundDark from '../assets/images/penguinparty/penguinbackgrounddark.jpg'
+import penguinBackgroundLight from '../assets/images/penguinparty/penguinbackgroundlight.jpg'
 type TextProps = Omit<TextPropsOriginal, 'css'>
 
 export const MEDIA_WIDTHS = {
@@ -89,6 +90,7 @@ function colors(darkMode: boolean): Colors {
     error: darkMode ? '#FD4040' : '#DF1F38',
     success: darkMode ? '#27AE60' : '#007D35',
     warning: '#FF8F00',
+    bgUrl: darkMode ? penguinBackgroundDark : penguinBackgroundLight,
 
     // dont wanna forget these blue yet
     blue4: darkMode ? '#153d6f70' : '#C4D9F8',
@@ -189,9 +191,16 @@ export const TYPE = {
 
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
+  background-image:
+  url('${({ theme }) => theme.bgUrl}');
+  background-position: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height:100%;
+  width:100%;
+  background-size:cover;
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg1} !important;
-  background-image: url(https://images.wallpaperscraft.com/image/single/winter_snow_silhouette_131193_3840x2160.jpg)
 }
 
 a {

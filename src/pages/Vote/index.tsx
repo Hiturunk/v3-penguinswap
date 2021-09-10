@@ -14,7 +14,7 @@ import Loader from 'components/Loader'
 import { AutoRow, RowBetween, RowFixed } from 'components/Row'
 import { SwitchLocaleLink } from 'components/SwitchLocaleLink'
 import DelegateModal from 'components/vote/DelegateModal'
-import { ZERO_ADDRESS } from '../../constants/misc'
+import { PENGUIN_URLS, ZERO_ADDRESS } from '../../constants/misc'
 import { UNI } from '../../constants/tokens'
 import { useActiveWeb3React } from 'hooks/web3'
 import { ApplicationModal } from 'state/application/actions'
@@ -196,12 +196,22 @@ export default function Vote() {
                 ''
               )}
               <ButtonPrimary
-                as={Link}
-                to="/create-proposal"
+                as="a"
+                href={PENGUIN_URLS.voting}
+                target="_blank"
                 style={{ width: 'fit-content', borderRadius: '8px' }}
                 padding="8px"
               >
-                <Trans>Create Proposal</Trans>
+                <Trans>Penguin Party snapshot page</Trans>
+              </ButtonPrimary>
+              <ButtonPrimary
+                as="a"
+                href="https://www.fish.vote"
+                target="_blank"
+                style={{ width: 'fit-content', borderRadius: '8px' }}
+                padding="8px"
+              >
+                <Trans>Create UniSwap Proposal</Trans>
               </ButtonPrimary>
             </AutoRow>
           </WrapSmall>
@@ -246,9 +256,9 @@ export default function Vote() {
               )
             })}
         </TopSection>
-        <TYPE.subHeader color="text3">
+        {/* <TYPE.subHeader color="text3">
           <Trans>A minimum threshold of 0.25% of the total UNI supply is required to submit proposals</Trans>
-        </TYPE.subHeader>
+        </TYPE.subHeader> */}
       </PageWrapper>
       <SwitchLocaleLink />
     </>

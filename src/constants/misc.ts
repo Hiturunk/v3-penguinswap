@@ -1,7 +1,7 @@
 import { Percent } from '@uniswap/sdk-core'
 import JSBI from 'jsbi'
 
-export const VERSION = '0.3 - Slimy Sludge'
+export const VERSION = '0.3 - Naughty Penguin'
 export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
 export const IS_ON_APP_URL = window && window.location.hostname === 'https://v3.penguinswap.eth.limo'
 export const L2_DEADLINE_FROM_NOW = 60 * 5

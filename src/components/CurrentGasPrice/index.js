@@ -11,7 +11,7 @@ function CurrentGasPrice() {
   webSocket.onmessage = function (event) {
     const gasPrices = JSON.parse(event.data)
     standardGwei = parseInt(gasPrices.data.gasPrices.standard / 10 ** 9)
-    console.log(standardGwei)
+    // console.log(standardGwei)
   }
   return (
     <div style={{ fontWeight: '500' }}>

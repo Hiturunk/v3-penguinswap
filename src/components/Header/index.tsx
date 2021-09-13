@@ -219,7 +219,7 @@ const StyledNavLink = styled(NavLink).attrs({
   padding: 0.25em 0.4em;
   border-radius: 0.25em;
   text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
-  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  box-shadow: inset 0 0 0.25em 0 ${clrNeon}, 0 0 0.25em 0 ${clrNeon};
   position: relative;
 }
 
@@ -279,7 +279,7 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   padding: 0.25em 0.4em;
   border-radius: 0.25em;
   text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
-  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  box-shadow: inset 0 0 0.25em 0 ${clrNeon}, 0 0 0.25em 0 ${clrNeon};
   position: relative;
 }
 

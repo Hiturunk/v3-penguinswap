@@ -2,7 +2,7 @@ import { Trans } from '@lingui/macro'
 import styled from 'styled-components/macro'
 import SettingsTab from '../Settings'
 import { Percent } from '@uniswap/sdk-core'
-
+import CurrentGasPrice from '../CurrentGasPrice'
 import { RowBetween, RowFixed } from '../Row'
 import { TYPE } from '../../theme'
 
@@ -20,6 +20,9 @@ export default function SwapHeader({ allowedSlippage }: { allowedSlippage: Perce
           <TYPE.black fontWeight={500} fontSize={16} style={{ marginRight: '8px' }}>
             <Trans>Swap</Trans>
           </TYPE.black>
+        </RowFixed>
+        <RowFixed>
+          <CurrentGasPrice />
         </RowFixed>
         <RowFixed>
           <SettingsTab placeholderSlippage={allowedSlippage} />

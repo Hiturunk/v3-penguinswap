@@ -1,5 +1,4 @@
 import { Currency } from '@uniswap/sdk-core'
-import { currencyEquals } from '@uniswap/legacy'
 import { useMemo } from 'react'
 import { WETH9_EXTENDED, SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI } from '../constants/tokens'
 import { tryParseAmount } from '../state/swap/hooks'

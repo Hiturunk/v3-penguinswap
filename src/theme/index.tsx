@@ -6,11 +6,9 @@ import styled, {
   DefaultTheme,
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components/macro'
-import { useIsDarkMode } from '../state/user/hooks'
 import { Colors } from './styled'
 
 export * from './components'
-import penguinBackgroundDark from '../assets/images/penguinparty/penguinbackgrounddark.jpg'
 import penguinBackgroundLight from '../assets/images/penguinparty/penguinbackgroundlight.jpg'
 type TextProps = Omit<TextPropsOriginal, 'css'>
 
@@ -63,7 +61,7 @@ function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#E8006F',
+    primary1: darkMode ? '#FF14B5' : '#FF14B5',
     primary2: darkMode ? '#3680E7' : '#FF8CC3',
     primary3: darkMode ? '#4D8FEA' : '#FF99C9',
     primary4: darkMode ? '#376bad70' : '#F6DDE8',
@@ -90,7 +88,6 @@ function colors(darkMode: boolean): Colors {
     error: darkMode ? '#FD4040' : '#DF1F38',
     success: darkMode ? '#27AE60' : '#007D35',
     warning: '#FF8F00',
-    bgUrl: darkMode ? penguinBackgroundDark : penguinBackgroundLight,
 
     // dont wanna forget these blue yet
     blue4: darkMode ? '#153d6f70' : '#C4D9F8',
@@ -127,7 +124,7 @@ function theme(darkMode: boolean): DefaultTheme {
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const darkMode = useIsDarkMode()
+  const darkMode = true
 
   const themeObject = useMemo(() => theme(darkMode), [darkMode])
 
@@ -191,19 +188,11 @@ export const TYPE = {
 
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
-  background-image:
-  url('${({ theme }) => theme.bgUrl}');
-  background-position: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height:100%;
-  width:100%;
-  background-size:cover;
   color: ${({ theme }) => theme.text1};
   background-color: ${({ theme }) => theme.bg1} !important;
 }
 
 a {
- color: ${({ theme }) => theme.blue1};
+ color: ${({ theme }) => theme.blue1}; 
 }
 `

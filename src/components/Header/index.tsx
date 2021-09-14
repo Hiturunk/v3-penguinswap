@@ -11,8 +11,8 @@ import { useUserHasSubmittedClaim } from 'state/transactions/hooks'
 import { useDarkModeManager } from 'state/user/hooks'
 import { useETHBalances } from 'state/wallet/hooks'
 import styled from 'styled-components/macro'
-import Logo from '../../assets/images/penguinparty/cb.png'
-import LogoDark from '../../assets/images/penguinparty/cb.png'
+import Logo from '../../assets/svg/logo_simple.svg'
+import LogoDark from '../../assets/svg/logo_simple.svg'
 import { useActiveWeb3React } from '../../hooks/web3'
 import { ExternalLink, TYPE } from '../../theme'
 import ClaimModal from '../claim/ClaimModal'
@@ -219,7 +219,7 @@ const StyledNavLink = styled(NavLink).attrs({
   padding: 0.25em 0.4em;
   border-radius: 0.25em;
   text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
-  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  box-shadow: inset 0 0 0.25em 0 ${clrNeon}, 0 0 0.25em 0 ${clrNeon};
   position: relative;
 }
 
@@ -253,7 +253,7 @@ const StyledNavLink = styled(NavLink).attrs({
   opacity: 1;
 }
 `
-// I created an extra styled button to hide it on smaller screen sizes
+// I created an extra styled button to hide it on smaller screen sizes. This is a hack but it works.
 const StyledNavLinkHidable = styled(StyledNavLink)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
       display: none;
@@ -279,7 +279,7 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   padding: 0.25em 0.4em;
   border-radius: 0.25em;
   text-shadow: 0 0 0.125em rgba(255, 255, 255, 0.3), 0 0 0.45em currentColor;
-  box-shadow: inset 0 0 0.5em 0 ${clrNeon}, 0 0 0.5em 0 ${clrNeon};
+  box-shadow: inset 0 0 0.25em 0 ${clrNeon}, 0 0 0.25em 0 ${clrNeon};
   position: relative;
 }
 
@@ -372,7 +372,7 @@ export default function Header() {
       </Modal>
       <Title href=".">
         <UniIcon>
-          <img width={'48px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+          <img width={'50px'} src={darkMode ? LogoDark : Logo} alt="logo" />
         </UniIcon>
       </Title>
       <HeaderLinks>
@@ -399,7 +399,6 @@ export default function Header() {
         )}
         <StyledExternalLink id={`charts-nav-link`} href={infoLink}>
           <Trans>Charts</Trans>
-          <sup>↗</sup>
         </StyledExternalLink>
         <StyledNavLink id={`stake-nav-link`} to={'/about'}>
           <Trans>About</Trans>

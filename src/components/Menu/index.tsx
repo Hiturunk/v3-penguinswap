@@ -1,6 +1,21 @@
 import { t } from '@lingui/macro'
 import React, { useEffect, useRef, useState } from 'react'
-import { BookOpen, Code, Info, MessageCircle, PieChart, Moon, Sun, Globe, ChevronLeft, Check } from 'react-feather'
+import {
+  BookOpen,
+  Code,
+  Info,
+  MessageCircle,
+  PieChart,
+  Moon,
+  Sun,
+  Globe,
+  ChevronLeft,
+  Check,
+  GitHub,
+  Package,
+  ThumbsUp,
+  Video,
+} from 'react-feather'
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components/macro'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
@@ -17,6 +32,7 @@ import { L2_CHAIN_IDS, CHAIN_INFO, SupportedChainId } from 'constants/chains'
 import { LOCALE_LABEL, SupportedLocale, SUPPORTED_LOCALES } from 'constants/locales'
 import { useLocationLinkProps } from 'hooks/useLocationLinkProps'
 import { useActiveLocale } from 'hooks/useActiveLocale'
+import { PENGUIN_URLS } from 'constants/misc'
 
 export enum FlyoutAlignment {
   LEFT = 'LEFT',
@@ -73,7 +89,7 @@ const StyledMenu = styled.div`
 
 const MenuFlyout = styled.span<{ flyoutAlignment?: FlyoutAlignment }>`
   min-width: 196px;
-  max-height: 350px;
+  max-height: 450px;
   overflow: auto;
   background-color: ${({ theme }) => theme.bg1};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
@@ -232,29 +248,53 @@ export default function Menu() {
             default:
               return (
                 <MenuFlyout>
-                  <MenuItem href="https://penguinparty.eth.limo">
+                  <MenuItem href={PENGUIN_URLS.home}>
                     <div>
-                      <Trans>About</Trans>
+                      <Trans>Home Page</Trans>
                     </div>
-                    <Info opacity={0.6} size={16} />
+                    <Info size={14} />
                   </MenuItem>
-                  <MenuItem href="https://github.com/penguinparty-eth">
-                    <div>
-                      <Trans>Docs</Trans>
-                    </div>
-                    <BookOpen opacity={0.6} size={16} />
-                  </MenuItem>
-                  <MenuItem href="https://discord.gg/H4NyxPUV24">
+                  <MenuItem href={PENGUIN_URLS.discord}>
                     <div>
                       <Trans>Discord</Trans>
                     </div>
-                    <MessageCircle opacity={0.6} size={16} />
+                    <MessageCircle size={14} />
                   </MenuItem>
-                  <MenuItem href={infoLink}>
+                  <MenuItem href={PENGUIN_URLS.github}>
+                    <div>
+                      <Trans>GitHub</Trans>
+                    </div>
+                    <GitHub size={14} />
+                  </MenuItem>
+                  <MenuItem href={PENGUIN_URLS.treasury}>
+                    <div>
+                      <Trans>Treasury</Trans>
+                    </div>
+                    <Package size={14} />
+                  </MenuItem>
+                  <MenuItem href={PENGUIN_URLS.youtube}>
+                    <div>
+                      <Trans>YouTube</Trans>
+                    </div>
+                    <Video size={14} />
+                  </MenuItem>
+                  <MenuItem href={PENGUIN_URLS.voting}>
+                    <div>
+                      <Trans>Snapshot Page</Trans>
+                    </div>
+                    <ThumbsUp size={14} />
+                  </MenuItem>
+                  <MenuItem href="https://info.uniswap.org/">
                     <div>
                       <Trans>Analytics</Trans>
                     </div>
-                    <PieChart opacity={0.6} size={16} />
+                    <PieChart size={14} />
+                  </MenuItem>
+                  <MenuItem href="https://docs.uniswap.org/">
+                    <div>
+                      <Trans>Docs</Trans>
+                    </div>
+                    <BookOpen size={14} />
                   </MenuItem>
                   <ToggleMenuItem onClick={() => setMenu('lang')}>
                     <div>
@@ -262,21 +302,10 @@ export default function Menu() {
                     </div>
                     <Globe opacity={0.6} size={16} />
                   </ToggleMenuItem>
-                  <ToggleMenuItem onClick={() => toggleDarkMode()}>
+                  {/* <ToggleMenuItem onClick={() => toggleDarkMode()}>
                     <div>{darkMode ? <Trans>Light Theme</Trans> : <Trans>Dark Theme</Trans>}</div>
                     {darkMode ? <Moon opacity={0.6} size={16} /> : <Sun opacity={0.6} size={16} />}
-                  </ToggleMenuItem>
-                  {showUNIClaimOption && (
-                    <UNIbutton
-                      onClick={openClaimModal}
-                      padding="8px 16px"
-                      width="100%"
-                      $borderRadius="12px"
-                      mt="0.5rem"
-                    >
-                      <Trans>Claim UNI</Trans>
-                    </UNIbutton>
-                  )}
+                  </ToggleMenuItem> */}
                 </MenuFlyout>
               )
           }
